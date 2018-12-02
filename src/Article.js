@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import CommentList from './CommentList';
 
 export default class Article extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isOpen: false
-        }
+    static propTypes = {
+        article: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            text: PropTypes.string
+        }).isRequired
     }
+    
+    state = {
+        isOpen: false,
+        isCommentsOpen: false
+    }
+
+
 
     render() {
         const {article} = this.props;
@@ -16,8 +25,8 @@ export default class Article extends Component {
         return(
             <div>
                 <h3>{article.title}</h3>
-                <button onClick = {this.toogleOpen}>
-                    {isOpen ? 'close' : 'open'}
+                <button onClick = {this.toggleArticleDisplay}>
+                    {isOpen ? 'close article' : 'open article'}
                 </button>
                 {this.getBody()}
             </div>
@@ -26,12 +35,21 @@ export default class Article extends Component {
     
     getBody() {
         const {article} = this.props;
+        const comments = article.comments;
         const {isOpen} = this.state;
 
-        return isOpen ? <section>{article.text}</section> : null;
+        if (isOpen) {
+            return(
+                <section>
+                    <p>{article.text}</p>
+                    <CommentList comments = {comments}/>
+                </section>
+            )
+        }
+        return null;
     }
 
-    toogleOpen = () => {
+    toggleArticleDisplay = () => {
         this.setState({
             isOpen: !this.state.isOpen
         })
