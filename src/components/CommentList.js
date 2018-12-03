@@ -8,7 +8,7 @@ class CommentList extends Component {
     }
 
     render() {
-        const{toggleOpen} = this.props;
+        const {toggleOpen} = this.props;
 
         return(
             <div>
@@ -44,7 +44,7 @@ class CommentList extends Component {
     }
 
     getCommentsButtonLabel() {
-        const {comments, isOpen, toggleOpen} = this.props;
+        const {comments, isOpen} = this.props;
 
         if (!comments.length) {
             return 'no comments yet';
