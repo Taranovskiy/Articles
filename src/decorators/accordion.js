@@ -15,7 +15,11 @@ export default (OriginalComponent) => class WrappedComponent extends ReactCompon
         );
     }
 
-    toggleOpenArticle = (openArticleId) => () => {
-        this.setState({openArticleId})
+    toggleOpenArticle = (id) => () => {
+        if (id === this.state.openArticleId) {
+            this.setState({openArticleId: null});
+        } else {
+            this.setState({openArticleId: id});
+        }
     }
 }
