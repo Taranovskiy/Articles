@@ -2,7 +2,7 @@ import React, {Component as ReactComponent} from 'react';
 
 export default (OriginalComponent) => class Accordion extends ReactComponent {
     state = {
-        openArticleId: null
+        openItemId: null
     }
 
     render() {
@@ -10,16 +10,16 @@ export default (OriginalComponent) => class Accordion extends ReactComponent {
             <OriginalComponent 
                 {...this.props}
                 {...this.state}
-                toggleOpenArticle = {this.toggleOpenArticle}
+                toggleOpenItem = {this.toggleOpenItem}
             />
         );
     }
 
-    toggleOpenArticle = (id) => () => {
-        if (id === this.state.openArticleId) {
-            this.setState({openArticleId: null});
+    toggleOpenItem = (id) => () => {
+        if (id === this.state.openItemId) {
+            this.setState({openItemId: null});
         } else {
-            this.setState({openArticleId: id});
+            this.setState({openItemId: id});
         }
     }
 }

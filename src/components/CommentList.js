@@ -14,7 +14,6 @@ class CommentList extends Component {
     }
 
     render() {
-        console.log(this.props);
         const {toggleOpen} = this.props;
 
         return(
