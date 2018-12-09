@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import CommentList from './CommentList';
+import {CSSTransitionGroup} from 'react-transition-group';
+import './article.css';
 
-class Article extends Component {
+class Article extends PureComponent {
     static propTypes = {
         article: PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -10,13 +12,14 @@ class Article extends Component {
             text: PropTypes.string
         }).isRequired,
 
-        isOpen: PropTypes.bool.isRequired,
+        isOpen: PropTypes.bool,
 
-        toggleOpen: PropTypes.func.isRequired
+        toggleOpen: PropTypes.func
     }
 
     render() {
         const {article, isOpen, toggleOpen} = this.props;
+        console.log('update article!');
 
         return(
             <div>
@@ -24,7 +27,16 @@ class Article extends Component {
                 <button onClick = {toggleOpen}>
                     {isOpen ? 'close article' : 'open article'}
                 </button>
-                {this.getBody()}
+                <CSSTransitionGroup
+                    transitionName = 'article'
+                    transitionAppear = {true}
+                    transitionAppearTimeout = {500}
+                    transitionEnterTimeout = {500}
+                    transitionLeaveTimeout = {300}
+                    component = 'div'
+                    >
+                    {this.getBody()}
+                </CSSTransitionGroup>
             </div>
         )
     }
