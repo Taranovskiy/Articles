@@ -33,12 +33,16 @@
     "webpack-dev-server": "^2.0.0"
   },
   "dependencies": {
+    "@types/react": "^16.7.13",
+    "@types/react-day-picker": "^5.3.0",
     "history": "^4.6.3",
     "immutable": "^3.8.1",
+    "moment": "^2.22.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
-    "react-day-picker": "^6.0.3",
+    "react-day-picker": "^7.2.4",
     "react-dom": "^15.5.0",
+    "react-helmet": "^5.2.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
