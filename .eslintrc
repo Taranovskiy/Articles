@@ -13,22 +13,50 @@
         }
     },
     "rules": {
-        "indent": ["error", 4, {"ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"]}],
+        "indent": [
+            "error",
+            4,
+            {
+                "ignoredNodes": [
+                    "JSXElement",
+                    "JSXElement > *",
+                    "JSXAttribute",
+                    "JSXIdentifier",
+                    "JSXNamespacedName",
+                    "JSXMemberExpression",
+                    "JSXSpreadAttribute",
+                    "JSXExpressionContainer",
+                    "JSXOpeningElement",
+                    "JSXClosingElement",
+                    "JSXText",
+                    "JSXEmptyExpression",
+                    "JSXSpreadChild"
+                ]
+            }
+        ],
         "react/jsx-indent": ["error", 4],
         "semi": 2,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "jsx-a11y/label-has-for": [ 2, {
-            "components": [ "Label" ],
-            "required": {
-                "some": [ "nesting", "id" ]
-            },
-            "allowChildren": false
-        }],
-        "jsx-a11y/label-has-associated-control": [ 2, {
-            "labelComponents": ["CustomInputLabel"],
-            "labelAttributes": ["label"],
-            "controlComponents": ["CustomInput"],
-            "depth": 3
-          }]
+        "jsx-a11y/label-has-for": [
+            1,
+            {
+                "components": ["Label"],
+                "required": {
+                    "some": ["nesting", "id"]
+                },
+                "allowChildren": false
+            }
+        ],
+        "jsx-a11y/label-has-associated-control": [
+            2,
+            {
+                "labelComponents": ["CustomInputLabel"],
+                "labelAttributes": ["label"],
+                "controlComponents": ["CustomInput"],
+                "depth": 3
+            }
+        ],
+        "react/destructuring-assignment": [0, "always"],
+        "react/sort-comp": [0]
     }
 }

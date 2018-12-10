@@ -1,28 +1,52 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export class CommentForm extends Component {
-    static propTypes = {};
-
     state = {
         username: '',
-        newCommentText: '',
+        textOfNewComment: '',
     };
 
     render() {
         return (
             <div>
-                <h4>add new comment</h4>
-                <label>
-                    username
-                    <input
-                      type="text"
-                      value={this.state.username}
-                      onChange={this.handleUserChange}
-                    />
-                </label>
+                <h4>Add new comment</h4>
+                <div>
+                    <label>
+                        Username:
+                        <input
+                          type="text"
+                          value={this.state.username}
+                          onChange={this.handleUsernameChange}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Comment:
+                        <textarea
+                          cols="30"
+                          rows="10"
+                          onChange={this.handleTextOfCommentChange}
+                          value={this.state.textOfNewComment}
+                        />
+                    </label>
+                </div>
             </div>
         );
+    }
+
+    handleUsernameChange = (evt) => {
+        const username = evt.target.value;
+        this.setState({
+            username,
+        });
+    };
+
+    handleTextOfCommentChange = (evt) => {
+        const textOfNewComment = evt.target.value;
+        this.setState({
+            textOfNewComment,
+        });
     }
 }
 
