@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
-import CommentForm from './CommentForm';
+import CommentForm from './CommentForm/CommentForm';
 import toggleOpen from '../decorators/toggleOpen';
 
 class CommentList extends Component {
@@ -30,19 +30,19 @@ class CommentList extends Component {
 
     getBody() {
         const {comments, isOpen} = this.props;
-        
+
         if (!isOpen || !comments.length) {
             return null;
         }
 
         const commentElements = comments.map((comment) => {
-            return ( 
+            return (
                 <li key = {comment.id}>
                     <Comment comment = {comment} />
                 </li>
             );
         });
-    
+
         return(
             <ul>
                 {commentElements}
