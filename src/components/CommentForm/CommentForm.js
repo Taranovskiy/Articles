@@ -19,8 +19,10 @@ export class CommentForm extends Component {
     };
 
     render() {
+        console.log(this.state.username);
+
         return (
-            <form>
+            <form type="sumbit" onSubmit={this.handleSubmit}>
                 <h4>Add new comment</h4>
                 <div>
                     <label>
@@ -45,10 +47,20 @@ export class CommentForm extends Component {
                         />
                     </label>
                 </div>
-                <button type="submit" value="submit">Submit</button>
+                <button type="submit" value="submit">
+                    Submit
+                </button>
             </form>
         );
     }
+
+    handleSubmit = (evt) => {
+        evt.preventDefault();
+        this.setState({
+            username: '',
+            textOfNewComment: '',
+        });
+    };
 
     handleChange = type => (evt) => {
         const { value } = evt.target;
