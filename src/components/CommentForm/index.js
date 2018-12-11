@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CommentForm.css';
+import './style.css';
 
 const limits = {
     username: {
