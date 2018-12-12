@@ -57,6 +57,8 @@
             }
         ],
         "react/destructuring-assignment": [0, "always"],
-        "react/sort-comp": [0]
+        "react/sort-comp": [0],
+        "no-underscore-dangle": [0],
+        "import/prefer-default-export": [0]
     }
 }
