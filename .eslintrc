@@ -2,6 +2,10 @@
     "parser": "babel-eslint",
     "plugins": ["react", "import"],
     "extends": "airbnb",
+    "env": {
+        "browser": true,
+        "node": true
+    },
     "settings": {
         "import/parser": "babel-eslint",
         "import/resolve": {
@@ -59,6 +63,8 @@
         "react/destructuring-assignment": [0, "always"],
         "react/sort-comp": [0],
         "no-underscore-dangle": [0],
-        "import/prefer-default-export": [0]
+        "import/prefer-default-export": [0],
+        "react/prefer-stateless-function": [1],
+        "import/no-named-as-default": [1]
     }
 }

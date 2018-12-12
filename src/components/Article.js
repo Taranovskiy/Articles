@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import CommentList from './CommentList';
 import './article.css';
+import { deleteArticle } from '../AC/articles';
 
 class Article extends PureComponent {
     static propTypes = {
@@ -23,8 +24,12 @@ class Article extends PureComponent {
 
         return (
             <div>
-                <h3>{article.title}
-                    <button type="button" onClick={this.handleDelete}> delete article</button>
+                <h3>
+                    {article.title}
+                    <button type="button" onClick={this.handleDelete}>
+                        {' '}
+                        delete article
+                    </button>
                 </h3>
                 <button type="button" onClick={toggleOpen}>
                     {isOpen ? 'close article' : 'open article'}
@@ -60,7 +65,8 @@ class Article extends PureComponent {
 
     handleDelete = () => {
         console.log('deleting ', this.props.article.id);
-    }
+        deleteArticle(this.props.article.id);
+    };
 }
 
 export default Article;
