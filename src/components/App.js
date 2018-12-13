@@ -6,16 +6,15 @@ import Counter from './Counter';
 
 export default class App extends Component {
     static propTypes = {
-        articles: PropTypes.array
-    }
+        articles: PropTypes.array,
+    };
 
     render() {
-
         return (
             <div>
-                <Counter />
-                <UserForm articles={this.props.articles} />
-                <ArticleList articles={this.props.articles} />
+                <Counter articles />
+                <UserForm articles = {this.props.articles} />
+                <ArticleList articles = {this.props.articles} />
             </div>
         );
     }

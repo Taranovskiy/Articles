@@ -1,20 +1,23 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { increment } from "../ac";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { increment } from '../AC';
 
 export class Counter extends Component {
     static propTypes = {
-        counter: PropTypes.number
+        counter: PropTypes.number,
+        increment: PropTypes.func.isRequired,
     };
 
     render() {
-        console.log(this.props);
+        console.log('Counter -->', this.props);
 
         return (
             <div>
                 <h2>{this.props.counter}</h2>
-                <button onClick={this.handleIncrement}>Increment me</button>
+                <button type = "button" onClick = {this.handleIncrement}>
+                    Increment me
+                </button>
             </div>
         );
     }
@@ -24,17 +27,13 @@ export class Counter extends Component {
     };
 }
 
-const mapStateToProps = state => {
-    return {
-        counter: state.count
-    };
-};
+const mapStateToProps = state => ({
+    counter: state.count,
+});
 
-const mapToDispatch = { increment };
+const mapDispatchToProps = { increment };
 
-const decorator = connect(
+export default connect(
     mapStateToProps,
-    mapToDispatch
-);
-
-export default decorator(Counter);
+    mapDispatchToProps,
+)(Counter);

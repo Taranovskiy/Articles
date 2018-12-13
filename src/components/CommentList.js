@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
@@ -7,19 +7,20 @@ import toggleOpen from '../decorators/toggleOpen';
 class CommentList extends Component {
     static propTypes = {
         comments: PropTypes.array,
-        toggleOpen: PropTypes.func
-    }
+        toggleOpen: PropTypes.func,
+        isOpen: PropTypes.bool,
+    };
 
     static defaultProps = {
-        comments: []
-    }
+        comments: [],
+    };
 
     render() {
-        const {toggleOpen} = this.props;
+        const { toggleOpen } = this.props;
 
-        return(
+        return (
             <div>
-                <button onClick = {toggleOpen}>
+                <button type = "button" onClick = {toggleOpen}>
                     {this.getCommentsButtonLabel()}
                 </button>
                 {this.getBody()}
@@ -29,30 +30,23 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const {comments, isOpen} = this.props;
+        const { comments, isOpen } = this.props;
 
         if (!isOpen || !comments.length) {
             return null;
         }
 
-        const commentElements = comments.map((comment) => {
-            return (
-                <li key = {comment.id}>
-                    <Comment comment = {comment} />
-                </li>
-            );
-        });
+        const commentElements = comments.map(comment => (
+            <li key = {comment.id}>
+                <Comment comment = {comment} />
+            </li>
+        ));
 
-        return(
-            <ul>
-                {commentElements}
-            </ul>
-        );
-
+        return <ul>{commentElements}</ul>;
     }
 
     getCommentsButtonLabel() {
-        const {comments, isOpen} = this.props;
+        const { comments, isOpen } = this.props;
 
         if (!comments.length) {
             return 'no comments yet';

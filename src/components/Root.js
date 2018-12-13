@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import App from "./App";
-import store from "../store";
-import { Provider } from "react-redux";
+import React from 'react';
+import { Provider } from 'react-redux';
+import App from './App';
+import store from '../store';
 
 function Root(props) {
     return (
@@ -11,7 +10,5 @@ function Root(props) {
         </Provider>
     );
 }
-
-Root.propTypes = {};
 
 export default Root;

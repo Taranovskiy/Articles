@@ -7,19 +7,20 @@ class ArticleList extends Component {
     static propTypes = {
         articles: PropTypes.array,
         // from accordion
-        toggleOpenArticle: PropTypes.func,
-        openArticleId: PropTypes.string,
+        toggleOpenItem: PropTypes.func,
+        openItemId: PropTypes.string,
     };
 
     render() {
+        console.log('Article list -->', this.props);
         const { toggleOpenItem, openItemId } = this.props;
 
         const articleElements = this.props.articles.map(article => (
-            <li key={article.id}>
+            <li key = {article.id}>
                 <Article
-                  article={article}
-                  isOpen={article.id === openItemId}
-                  toggleOpen={toggleOpenItem(article.id)}
+                    article = {article}
+                    isOpen = {article.id === openItemId}
+                    toggleOpen = {toggleOpenItem(article.id)}
                 />
             </li>
         ));
