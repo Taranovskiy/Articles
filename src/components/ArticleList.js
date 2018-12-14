@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Article from './Article';
 import accordion from '../decorators/accordion';
 
 class ArticleList extends Component {
     static propTypes = {
+        // from connect
         articles: PropTypes.array,
         // from accordion
         toggleOpenItem: PropTypes.func,
@@ -12,7 +14,8 @@ class ArticleList extends Component {
     };
 
     render() {
-        console.log('Article list -->', this.props);
+        console.log('--->>', this.props);
+
         const { toggleOpenItem, openItemId } = this.props;
 
         const articleElements = this.props.articles.map(article => (
@@ -29,4 +32,6 @@ class ArticleList extends Component {
     }
 }
 
-export default accordion(ArticleList);
+export default connect(({ articles }) => ({
+    articles,
+}))(accordion(ArticleList));

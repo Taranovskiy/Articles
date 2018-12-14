@@ -21,11 +21,7 @@
         }
     },
     "rules": {
-        "indent": [
-            "error",
-            4,
-            { "SwitchCase": 1 }
-        ],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": [2, 4],
         "semi": 2,
@@ -52,9 +48,10 @@
         "react/destructuring-assignment": [0, "always"],
         "react/sort-comp": [0],
         "import/no-named-as-default": [1],
-        "react/forbid-prop-types": [1, { "forbid": ["any"]}],
+        "react/forbid-prop-types": [1, { "forbid": ["any"] }],
         "react/require-default-props": [1],
-        "react/prefer-stateless-function": [1],
-        "react/jsx-equals-spacing": [2, "always"]
+        "react/prefer-stateless-function": [0],
+        "react/jsx-equals-spacing": [2, "always"],
+        "import/prefer-default-export": [0]
     }
 }

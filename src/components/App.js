@@ -13,7 +13,7 @@ export default class App extends Component {
         return (
             <div>
                 <Counter articles />
-                <UserForm articles = {this.props.articles} />
+                <UserForm articles = {[]} />
                 <ArticleList articles = {this.props.articles} />
             </div>
         );
