@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ArticleList from './ArticleList';
 import UserForm from './UserForm';
 import Counter from './Counter';
+import Filters from './Filters';
 
 export default class App extends Component {
     static propTypes = {
@@ -13,7 +14,8 @@ export default class App extends Component {
         return (
             <div>
                 <Counter articles />
-                <UserForm articles = {[]} />
+                <UserForm />
+                <Filters articles = {[]} />
                 <ArticleList articles = {this.props.articles} />
             </div>
         );
