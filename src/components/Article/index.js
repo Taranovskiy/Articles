@@ -17,6 +17,9 @@ class Article extends PureComponent {
         isOpen: PropTypes.bool,
 
         toggleOpen: PropTypes.func,
+
+        // from connect
+        deleteArticle: PropTypes.func
     };
 
     render() {

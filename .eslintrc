@@ -55,6 +55,9 @@
         "import/prefer-default-export": [0],
         "linebreak-style": ["error", "windows"],
         "react/jsx-one-expression-per-line": [0],
-        "lines-between-class-members": [1]
+        "lines-between-class-members": [1],
+        "import/newline-after-import": [1],
+        "object-curly-spacing": [1],
+        "no-multi-spaces": [1]
     }
 }

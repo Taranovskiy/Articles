@@ -13,9 +13,9 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <Counter articles />
+                <Counter />
                 <UserForm />
-                <Filters articles = {[]} />
+                <Filters />
                 <ArticleList articles = {this.props.articles} />
             </div>
         );

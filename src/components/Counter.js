@@ -10,8 +10,6 @@ export class Counter extends Component {
     };
 
     render() {
-        console.log('Counter -->', this.props);
-
         return (
             <div>
                 <h2>{this.props.counter}</h2>

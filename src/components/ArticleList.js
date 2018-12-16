@@ -14,8 +14,6 @@ class ArticleList extends Component {
     };
 
     render() {
-        console.log('--->>', this.props);
-
         const { toggleOpenItem, openItemId } = this.props;
 
         const articleElements = this.props.articles.map(article => (

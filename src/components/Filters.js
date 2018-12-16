@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Select from 'react-select';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import moment from 'moment';
 import { Helmet } from 'react-helmet';
 import { formatDate, parseDate } from 'react-day-picker/moment';
+import { selectArticle } from '../AC';
 
-export default class Filters extends Component {
+class Filters extends Component {
     static propTypes = {
+        // from connect
         articles: PropTypes.array,
+        selectArticle: PropTypes.func,
     };
 
     state = {
-        selection: null,
         from: undefined,
         to: undefined,
     };
 
-    render() {
-        const options = this.props.articles.map(article => ({
-            label: article.title,
-            value: article.id,
-        }));
+    options = this.props.articles.map(article => ({
+        label: article.title,
+        value: article.id,
+    }));
 
+    render() {
         const { from, to } = this.state;
         const modifiers = { start: from, end: to };
 
         return (
             <div>
                 <Select
-                    options = {options}
+                    options = {this.options}
                     value = {this.state.selection}
                     onChange = {this.changeSelection}
                     isMulti
@@ -104,7 +107,11 @@ export default class Filters extends Component {
         );
     }
 
-    changeSelection = selection => this.setState({ selection });
+    changeSelection = (selection = []) => {
+        const { selectArticle } = this.props;
+
+        selectArticle(selection);
+    };
 
     showFromMonth() {
         const { from, to } = this.state;
@@ -124,3 +131,10 @@ export default class Filters extends Component {
         this.setState({ to }, this.showFromMonth);
     };
 }
+
+export default connect(
+    ({ articles }) => ({
+        articles,
+    }),
+    { selectArticle },
+)(Filters);
