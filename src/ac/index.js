@@ -1,5 +1,5 @@
 import {
-    DELETE_ARTICLE, SELECT_ARTICLE, DATE_RANGE, INCREMENT,
+    DELETE_ARTICLE, SELECT_BY_TITLE, SELECT_BY_DATE_RANGE, INCREMENT,
 } from '../constants';
 
 export const increment = () => ({ type: INCREMENT });
@@ -9,13 +9,13 @@ export const deleteArticle = id => ({
     payload: { id },
 });
 
-export const selectArticle = (selection = [], articles) => ({
-    type: SELECT_ARTICLE,
+export const selectArticleByTitle = (selection = [], articles) => ({
+    type: SELECT_BY_TITLE,
     payload: { selection, articles },
 });
 
-export const dateRange = range => ({
-    type: DATE_RANGE,
+export const selectArticleByDateRange = range => ({
+    type: SELECT_BY_DATE_RANGE,
     payload: {
         from: range.from,
         to: range.to,

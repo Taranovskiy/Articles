@@ -16,7 +16,7 @@ export default class App extends Component {
                 <Counter />
                 <UserForm />
                 <Filters />
-                <ArticleList articles = {this.props.articles} />
+                <ArticleList />
             </div>
         );
     }

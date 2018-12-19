@@ -4,6 +4,6 @@ export const DELETE_ARTICLE = 'DELETE_ARTICLE';
 
 export const INCREMENT = 'INCREMENT';
 
-export const SELECT_ARTICLE = 'SELECT_ARTICLE';
+export const SELECT_BY_TITLE = 'SELECT_BY_TITLE';
 
-export const DATE_RANGE = 'DATE_RANGE';
+export const SELECT_BY_DATE_RANGE = 'SELECT_BY_DATE_RANGE';
