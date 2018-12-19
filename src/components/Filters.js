@@ -7,18 +7,14 @@ import 'react-day-picker/lib/style.css';
 import moment from 'moment';
 import { Helmet } from 'react-helmet';
 import { formatDate, parseDate } from 'react-day-picker/moment';
-import { selectArticle } from '../AC';
+import { selectArticle, dateRange } from '../AC';
 
 class Filters extends Component {
     static propTypes = {
         // from connect
         articles: PropTypes.array,
         selectArticle: PropTypes.func,
-    };
-
-    state = {
-        from: undefined,
-        to: undefined,
+        dateRange: PropTypes.func,
     };
 
     options = this.props.articles.map(article => ({
@@ -26,21 +22,26 @@ class Filters extends Component {
         value: article.id,
     }));
 
+    range = {
+        from: null,
+        to: null,
+    };
+
     render() {
-        const { from, to } = this.state;
+        const { from, to } = this.range;
         const modifiers = { start: from, end: to };
 
         return (
             <div>
                 <Select
                     options = {this.options}
-                    value = {this.state.selection}
+                    value = {undefined}
                     onChange = {this.changeSelection}
                     isMulti
                 />
                 <div className = "InputFromTo">
                     <DayPickerInput
-                        value = {from}
+                        value = ""
                         placeholder = "From"
                         format = "LL"
                         formatDate = {formatDate}
@@ -59,7 +60,7 @@ class Filters extends Component {
                     <span className = "InputFromTo-to">
                         <DayPickerInput
                             ref = {el => (this.to = el)}
-                            value = {to}
+                            value = ""
                             placeholder = "To"
                             format = "LL"
                             formatDate = {formatDate}
@@ -113,22 +114,22 @@ class Filters extends Component {
         selectArticle(selection);
     };
 
-    showFromMonth() {
-        const { from, to } = this.state;
-        if (!from) {
-            return;
-        }
-        if (moment(to).diff(moment(from), 'months') < 2) {
-            this.to.getDayPicker().showMonth(from);
-        }
-    }
+    handleFromChange = (from) => {
+        const { dateRange } = this.props;
+        this.range.from = from;
 
-    handleFromChange = from => () => {
-        this.setState({ from });
+        if (this.range.from && this.range.to) {
+            dateRange(this.range);
+        }
     };
 
-    handleToChange = to => () => {
-        this.setState({ to }, this.showFromMonth);
+    handleToChange = (to) => {
+        const { dateRange } = this.props;
+        this.range.to = to;
+
+        if (this.range.from && this.range.to) {
+            dateRange(this.range);
+        }
     };
 }
 
@@ -136,5 +137,5 @@ export default connect(
     ({ articles }) => ({
         articles,
     }),
-    { selectArticle },
+    { selectArticle, dateRange },
 )(Filters);
