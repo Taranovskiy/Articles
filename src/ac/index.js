@@ -9,9 +9,9 @@ export const deleteArticle = id => ({
     payload: { id },
 });
 
-export const selectArticleByTitle = (selection = [], articles) => ({
+export const selectArticleByTitle = (selected, articles) => ({
     type: SELECT_BY_TITLE,
-    payload: { selection, articles },
+    payload: { selected, articles },
 });
 
 export const selectArticleByDateRange = range => ({

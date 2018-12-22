@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Select from 'react-select';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import { Helmet } from 'react-helmet';
 import { formatDate, parseDate } from 'react-day-picker/moment';
-import { selectArticleByTitle, selectArticleByDateRange } from '../AC';
+import { selectArticleByDateRange } from '../../AC';
 
 class Filters extends Component {
     static propTypes = {
         // from connect
         articles: PropTypes.array,
+        filters: PropTypes.shape({
+            selelection: PropTypes.array,
+            range: PropTypes.shape({
+                from: PropTypes.instanceOf(Date),
+                to: PropTypes.instanceOf(Date),
+            }),
+        }),
+        selected: PropTypes.array,
         selectArticleByTitle: PropTypes.func,
         selectArticleByDateRange: PropTypes.func,
     };
-
-    options = this.props.articles.map(article => ({
-        label: article.title,
-        value: article.id,
-    }));
 
     range = {
         from: null,
@@ -32,12 +34,6 @@ class Filters extends Component {
 
         return (
             <div>
-                <Select
-                    options = {this.options}
-                    value = {undefined}
-                    onChange = {this.changeSelection}
-                    isMulti
-                />
                 <div className = "InputFromTo">
                     <DayPickerInput
                         value = ""
@@ -107,12 +103,6 @@ class Filters extends Component {
         );
     }
 
-    changeSelection = (selection = []) => {
-        const { selectArticleByTitle } = this.props;
-
-        selectArticleByTitle(selection);
-    };
-
     handleFromChange = (from) => {
         const { selectArticleByDateRange } = this.props;
         this.range.from = from;
@@ -133,9 +123,9 @@ class Filters extends Component {
 }
 
 export default connect(
-    ({ articles, selectArticle }) => ({
+    ({ articles, filters }) => ({
         articles,
-        selectArticle,
+        selected: filters.selection,
     }),
-    { selectArticleByTitle, selectArticleByDateRange },
+    { selectArticleByDateRange },
 )(Filters);
