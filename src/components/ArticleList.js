@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
 import Article from './Article';
 import accordion from '../decorators/accordion';
+import { filtratedArticlesSelector } from '../selectors';
 
 class ArticleList extends Component {
     static propTypes = {
@@ -23,6 +22,8 @@ class ArticleList extends Component {
     };
 
     render() {
+        console.log('--->>', 'update articlelist');
+
         const { articles, toggleOpenItem, openItemId } = this.props;
         const articleElements = articles.map(article => (
             <li key = {article.id}>
@@ -38,23 +39,6 @@ class ArticleList extends Component {
     }
 }
 
-export default connect(({ articles, filters }) => {
-    const filtredArticles = articles.filter((article) => {
-        const {
-            selected,
-            range: { from, to },
-        } = filters;
-        const moment = extendMoment(Moment);
-        const range = moment.range(from, to);
-        const articleDate = moment(article.date);
-        const values = selected.map(item => item.value);
-        return (
-            (!selected.length || values.includes(article.id))
-            && (!to || !from || range.contains(articleDate))
-        );
-        // return range.contains(articleDate));
-    });
-    return {
-        articles: filtredArticles,
-    };
-})(accordion(ArticleList));
+export default connect(state => ({
+    articles: filtratedArticlesSelector(state),
+}))(accordion(ArticleList));
