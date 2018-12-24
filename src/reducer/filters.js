@@ -1,4 +1,4 @@
-import { SELECT_BY_TITLE, SELECT_BY_DATE_RANGE } from '../constants';
+import { SELECT_BY_TITLE, SELECT_BY_DATE_RANGE, DELETE_ARTICLE } from '../constants';
 
 const defaultFilters = {
     selected: [],
@@ -16,6 +16,11 @@ export default (filters = defaultFilters, action) => {
             return { ...filters, selected: payload.selected };
         case SELECT_BY_DATE_RANGE:
             return { ...filters, range: { from: payload.from, to: payload.to } };
+        case DELETE_ARTICLE:
+            return {
+                ...filters,
+                selected: filters.selected.filter(article => article.value !== payload.id),
+            };
         default:
             return filters;
     }
