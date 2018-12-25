@@ -4,6 +4,8 @@ import { extendMoment } from 'moment-range';
 
 const articlesGetter = state => state.articles;
 const filtersGetter = state => state.filters;
+const commentsGetter = state => state.comments;
+const idGetter = (state, props) => props.id;
 
 export const filtratedArticlesSelector = createSelector(
     articlesGetter,
@@ -22,4 +24,10 @@ export const filtratedArticlesSelector = createSelector(
                 && (!to || !from || range.contains(articleDate))
         );
     }),
+);
+
+export const commentSelectorFactory = () => createSelector(
+    commentsGetter,
+    idGetter,
+    (comments, id) => comments.find(comment => comment.id === id),
 );
