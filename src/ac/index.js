@@ -1,5 +1,9 @@
 import {
-    DELETE_ARTICLE, SELECT_BY_TITLE, SELECT_BY_DATE_RANGE, INCREMENT,
+    DELETE_ARTICLE,
+    SELECT_BY_TITLE,
+    SELECT_BY_DATE_RANGE,
+    INCREMENT,
+    ADD_COMMENT,
 } from '../constants';
 
 export const increment = () => ({ type: INCREMENT });
@@ -20,4 +24,9 @@ export const selectArticleByDateRange = range => ({
         from: range.from,
         to: range.to,
     },
+});
+
+export const addComment = (userName, textOfComment) => ({
+    type: ADD_COMMENT,
+    payload: { userName, textOfComment },
 });

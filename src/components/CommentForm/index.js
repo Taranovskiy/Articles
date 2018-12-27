@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addComment } from '../../AC';
 import './style.css';
 
 const limits = {
@@ -6,32 +9,37 @@ const limits = {
         min: 5,
         max: 15,
     },
-    textOfNewComment: {
+    textOfComment: {
         min: 30,
         max: 50,
     },
 };
 
 export class CommentForm extends Component {
+    static propTypes = {
+        // from connect
+        addComment: PropTypes.func,
+    };
+
     state = {
         username: '',
-        textOfNewComment: '',
+        textOfComment: '',
     };
 
     render() {
         console.log(this.state.username);
 
         return (
-            <form type="sumbit" onSubmit={this.handleSubmit}>
+            <form type = "sumbit" onSubmit = {this.handleSubmit}>
                 <h4>Add new comment</h4>
                 <div>
                     <label>
                         Username:
                         <input
-                          type="text"
-                          value={this.state.username}
-                          onChange={this.handleChange('username')}
-                          className={this.getClassName('username')}
+                            type = "text"
+                            value = {this.state.username}
+                            onChange = {this.handleChange('username')}
+                            className = {this.getClassName('username')}
                         />
                     </label>
                 </div>
@@ -39,15 +47,15 @@ export class CommentForm extends Component {
                     <label>
                         Comment:
                         <textarea
-                          cols="30"
-                          rows="10"
-                          value={this.state.textOfNewComment}
-                          onChange={this.handleChange('textOfNewComment')}
-                          className={this.getClassName('textOfNewComment')}
+                            cols = "30"
+                            rows = "10"
+                            value = {this.state.textOfNewComment}
+                            onChange = {this.handleChange('textOfComment')}
+                            className = {this.getClassName('textOfComment')}
                         />
                     </label>
                 </div>
-                <button type="submit" value="submit">
+                <button type = "submit" value = "submit">
                     Submit
                 </button>
             </form>
@@ -56,10 +64,9 @@ export class CommentForm extends Component {
 
     handleSubmit = (evt) => {
         evt.preventDefault();
-        this.setState({
-            username: '',
-            textOfNewComment: '',
-        });
+        const { addComment } = this.props;
+        const { username, textOfComment } = this.state;
+        addComment(username, textOfComment);
     };
 
     handleChange = type => (evt) => {
@@ -80,4 +87,7 @@ export class CommentForm extends Component {
     };
 }
 
-export default CommentForm;
+export default connect(
+    null,
+    { addComment },
+)(CommentForm);
