@@ -9,9 +9,11 @@ import './style.css';
 class Article extends PureComponent {
     static propTypes = {
         article: PropTypes.shape({
+            date: PropTypes.string.isRequired,
             id: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             text: PropTypes.string,
+            comments: PropTypes.array,
         }).isRequired,
 
         isOpen: PropTypes.bool,
@@ -19,11 +21,12 @@ class Article extends PureComponent {
         toggleOpen: PropTypes.func,
 
         // from connect
-        deleteArticle: PropTypes.func
+        deleteArticle: PropTypes.func,
     };
 
     render() {
         const { article, isOpen, toggleOpen } = this.props;
+        console.log('--->>', 'article', article);
 
         return (
             <div>

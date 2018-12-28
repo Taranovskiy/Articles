@@ -8,22 +8,20 @@ import { filtratedArticlesSelector } from '../selectors';
 class ArticleList extends Component {
     static propTypes = {
         // from connect
-        articles: PropTypes.array,
+        articles: PropTypes.array.isRequired,
         filters: PropTypes.shape({
             selelection: PropTypes.array,
             range: PropTypes.shape({
                 from: PropTypes.instanceOf(Date),
                 to: PropTypes.instanceOf(Date),
             }),
-        }),
+        }).isRequired,
         // from accordion
-        toggleOpenItem: PropTypes.func,
-        openItemId: PropTypes.string,
+        toggleOpenItem: PropTypes.func.isRequired,
+        openItemId: PropTypes.string.isRequired,
     };
 
     render() {
-        console.log('--->>', 'update articlelist');
-
         const { articles, toggleOpenItem, openItemId } = this.props;
         const articleElements = articles.map(article => (
             <li key = {article.id}>
