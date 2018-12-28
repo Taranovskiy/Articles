@@ -10,7 +10,7 @@ const limits = {
         max: 15,
     },
     textOfComment: {
-        min: 30,
+        min: 5,
         max: 50,
     },
 };
@@ -49,7 +49,7 @@ export class CommentForm extends Component {
                             cols = "30"
                             rows = "10"
                             name = "textOfComment"
-                            value = {this.state.textOfNewComment}
+                            value = {this.state.textOfComment}
                             onChange = {this.handleChange('textOfComment')}
                             className = {this.getClassName('textOfComment')}
                         />
@@ -67,6 +67,10 @@ export class CommentForm extends Component {
         const { addComment } = this.props;
         const { username, textOfComment } = this.state;
         addComment(username, textOfComment);
+        this.setState({
+            username: '',
+            textOfComment: '',
+        });
     };
 
     handleChange = type => (evt) => {

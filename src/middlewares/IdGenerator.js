@@ -1,4 +1,4 @@
-import { DELETE_ARTICLE } from '../constants';
+import { ADD_COMMENT } from '../constants';
 
 export default store => next => (action) => {
     const { type } = action;
@@ -7,8 +7,8 @@ export default store => next => (action) => {
         .substr(2, 9);
 
     switch (type) {
-        case DELETE_ARTICLE:
-            console.log('--->>', 'ID', generateId());
+        case ADD_COMMENT:
+            action.payload.id = generateId();
             next(action);
             break;
         default:

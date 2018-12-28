@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import reducer from '../reducer';
 import logger from '../middlewares/logger';
-import articlesIdGenerator from '../middlewares/articlesIdGenerator';
+import articlesIdGenerator from '../middlewares/IdGenerator';
 
 const enhancer = applyMiddleware(logger, articlesIdGenerator);
 
