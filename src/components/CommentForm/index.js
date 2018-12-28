@@ -27,8 +27,6 @@ export class CommentForm extends Component {
     };
 
     render() {
-        console.log(this.state.username);
-
         return (
             <form type = "sumbit" onSubmit = {this.handleSubmit}>
                 <h4>Add new comment</h4>
@@ -38,6 +36,7 @@ export class CommentForm extends Component {
                         <input
                             type = "text"
                             value = {this.state.username}
+                            name = "username"
                             onChange = {this.handleChange('username')}
                             className = {this.getClassName('username')}
                         />
@@ -49,13 +48,14 @@ export class CommentForm extends Component {
                         <textarea
                             cols = "30"
                             rows = "10"
+                            name = "textOfComment"
                             value = {this.state.textOfNewComment}
                             onChange = {this.handleChange('textOfComment')}
                             className = {this.getClassName('textOfComment')}
                         />
                     </label>
                 </div>
-                <button type = "submit" value = "submit">
+                <button type = "submit" value = "submit" disabled = {!this.isValid()}>
                     Submit
                 </button>
             </form>
@@ -71,6 +71,7 @@ export class CommentForm extends Component {
 
     handleChange = type => (evt) => {
         const { value } = evt.target;
+
         if (value.length > limits[type].max) {
             return;
         }
@@ -85,6 +86,11 @@ export class CommentForm extends Component {
         }
         return '';
     };
+
+    isValid = () => this.state.username.length
+        && this.state.textOfComment.length
+        && this.state.username.length >= limits.username.min
+        && this.state.textOfComment.length >= limits.textOfComment.min;
 }
 
 export default connect(
