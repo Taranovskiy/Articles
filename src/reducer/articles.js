@@ -11,23 +11,12 @@ export default (articlesState = articlesMap, action) => {
 
     switch (type) {
         case DELETE_ARTICLE:
-            console.log('--->>', 'articleState', articlesState);
-            return articlesState.filter(article => article.id !== payload.id);
-        case ADD_COMMENT:
-            console.log('--->>', 'payload', payload);
-            console.log('--->>', 'articlesState', articlesState);
-            console.log(
-                '--->>',
-                'find article',
-                articlesState.findIndex(article => article.id === payload.articleId),
-            );
-            const indexOfCurrentArticle = articlesState.findIndex(
-                article => article.id === payload.articleId,
-            );
-
-            articlesState[indexOfCurrentArticle].comments.push(payload.id);
+            return Object.values(articlesState).filter(article => article.id !== payload.id);
+        case ADD_COMMENT: {
+            articlesState[payload.articleId].comments.push(payload.id);
             return articlesState;
+        }
         default:
-            return Object.values(articlesState);
+            return articlesState;
     }
 };

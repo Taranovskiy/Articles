@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 
-const articlesGetter = state => state.articles;
+const articlesGetter = state => Object.values(state.articles);
 const filtersGetter = state => state.filters;
 const idGetter = (state, props) => props.id;
 const commentsGetter = state => state.comments;

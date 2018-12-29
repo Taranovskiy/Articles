@@ -10,16 +10,15 @@ export default (commentsState = commentsMap, action) => {
     const { type, payload } = action;
 
     switch (type) {
-        case ADD_COMMENT:
-            // console.log('--->>', 'commentsState', commentsState);
-            // console.log('--->>', 'payload', payload);
-            commentsState[payload.id] = {
+        case ADD_COMMENT: {
+            const newCommentsState = commentsState;
+            newCommentsState[payload.id] = {
                 id: payload.id,
                 user: payload.userName,
                 text: payload.textOfComment,
             };
-
-            return commentsState;
+            return newCommentsState;
+        }
         default:
             return commentsState;
     }

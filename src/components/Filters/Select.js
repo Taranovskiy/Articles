@@ -27,12 +27,7 @@ class Filters extends Component {
         }));
 
         return (
-            <Select
-                options = {options}
-                value = {selected}
-                onChange = {this.changeSelection}
-                isMulti
-            />
+            <Select options = {options} value = {selected} onChange = {this.changeSelection} isMulti />
         );
     }
 
@@ -45,7 +40,7 @@ class Filters extends Component {
 
 export default connect(
     state => ({
-        articles: state.articles,
+        articles: Object.values(state.articles),
         selected: state.filters.selected,
     }),
     { selectArticleByTitle },
