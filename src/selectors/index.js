@@ -4,8 +4,8 @@ import { extendMoment } from 'moment-range';
 
 const articlesGetter = state => state.articles;
 const filtersGetter = state => state.filters;
-const commentsGetter = state => state.comments;
 const idGetter = (state, props) => props.id;
+const commentsGetter = state => state.comments;
 
 export const filtratedArticlesSelector = createSelector(
     articlesGetter,

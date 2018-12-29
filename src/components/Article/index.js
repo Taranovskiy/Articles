@@ -26,8 +26,6 @@ class Article extends PureComponent {
 
     render() {
         const { article, isOpen, toggleOpen } = this.props;
-        console.log('--->>', 'article', article);
-
         return (
             <div>
                 <h3>{article.title}</h3>
@@ -64,7 +62,7 @@ class Article extends PureComponent {
             return (
                 <section>
                     <p>{article.text}</p>
-                    <CommentList comments = {comments} />
+                    <CommentList comments = {comments} articleId = {article.id} />
                 </section>
             );
         }

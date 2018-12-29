@@ -11,7 +11,15 @@ export default (commentsState = commentsMap, action) => {
 
     switch (type) {
         case ADD_COMMENT:
+            // console.log('--->>', 'commentsState', commentsState);
+            // console.log('--->>', 'payload', payload);
+            commentsState[payload.id] = {
+                id: payload.id,
+                user: payload.userName,
+                text: payload.textOfComment,
+            };
 
+            return commentsState;
         default:
             return commentsState;
     }

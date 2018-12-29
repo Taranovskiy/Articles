@@ -6,6 +6,7 @@ import toggleOpen from '../decorators/toggleOpen';
 
 class CommentList extends Component {
     static propTypes = {
+        articleId: PropTypes.string.isRequired,
         comments: PropTypes.array,
         toggleOpen: PropTypes.func,
         isOpen: PropTypes.bool,
@@ -16,7 +17,9 @@ class CommentList extends Component {
     };
 
     render() {
-        const { toggleOpen } = this.props;
+        console.log('--->>', 'render comment list');
+
+        const { toggleOpen, articleId } = this.props;
 
         return (
             <div>
@@ -24,7 +27,7 @@ class CommentList extends Component {
                     {this.getCommentsButtonLabel()}
                 </button>
                 {this.getBody()}
-                <CommentForm />
+                <CommentForm articleId = {articleId} />
             </div>
         );
     }

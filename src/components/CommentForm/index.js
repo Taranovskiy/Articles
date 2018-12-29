@@ -17,6 +17,7 @@ const limits = {
 
 export class CommentForm extends Component {
     static propTypes = {
+        articleId: PropTypes.string.isRequired,
         // from connect
         addComment: PropTypes.func,
     };
@@ -64,9 +65,9 @@ export class CommentForm extends Component {
 
     handleSubmit = (evt) => {
         evt.preventDefault();
-        const { addComment } = this.props;
+        const { addComment, articleId } = this.props;
         const { username, textOfComment } = this.state;
-        addComment(username, textOfComment);
+        addComment(username, textOfComment, articleId);
         this.setState({
             username: '',
             textOfComment: '',

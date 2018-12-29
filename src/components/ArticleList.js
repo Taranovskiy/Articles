@@ -15,10 +15,10 @@ class ArticleList extends Component {
                 from: PropTypes.instanceOf(Date),
                 to: PropTypes.instanceOf(Date),
             }),
-        }).isRequired,
+        }),
         // from accordion
         toggleOpenItem: PropTypes.func.isRequired,
-        openItemId: PropTypes.string.isRequired,
+        openItemId: PropTypes.string,
     };
 
     render() {

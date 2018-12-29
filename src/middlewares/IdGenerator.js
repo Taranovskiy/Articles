@@ -8,8 +8,10 @@ export default store => next => (action) => {
 
     switch (type) {
         case ADD_COMMENT:
+            console.log('--->>', 'state before:', store.getState());
             action.payload.id = generateId();
             next(action);
+            console.log('--->>', 'state after:', store.getState());
             break;
         default:
             next(action);
