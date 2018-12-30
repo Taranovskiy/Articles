@@ -8,8 +8,8 @@ class CommentList extends Component {
     static propTypes = {
         articleId: PropTypes.string.isRequired,
         comments: PropTypes.array,
-        toggleOpen: PropTypes.func,
-        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func.isRequired,
+        isOpen: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {

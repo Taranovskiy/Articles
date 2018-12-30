@@ -123,9 +123,9 @@ class Filters extends Component {
 }
 
 export default connect(
-    ({ articles, filters }) => ({
-        articles,
-        selected: filters.selection,
+    state => ({
+        articles: Object.values(state.articles),
+        selected: state.filters.selection,
     }),
     { selectArticleByDateRange },
 )(Filters);

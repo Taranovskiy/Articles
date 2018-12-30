@@ -28,5 +28,9 @@ export const selectArticleByDateRange = range => ({
 
 export const addComment = (userName, textOfComment, articleId) => ({
     type: ADD_COMMENT,
-    payload: { userName, textOfComment, articleId },
+    payload: {
+        comment: { user: userName, text: textOfComment },
+        articleId,
+    },
+    generateId: true,
 });
