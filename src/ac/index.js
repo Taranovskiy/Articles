@@ -1,5 +1,6 @@
 import {
     DELETE_ARTICLE,
+    LOAD_ALL_ARTICLES,
     SELECT_BY_TITLE,
     SELECT_BY_DATE_RANGE,
     INCREMENT,
@@ -11,6 +12,11 @@ export const increment = () => ({ type: INCREMENT });
 export const deleteArticle = id => ({
     type: DELETE_ARTICLE,
     payload: { id },
+});
+
+export const loadAllArticles = () => ({
+    type: LOAD_ALL_ARTICLES,
+    callAPI: '/api/article',
 });
 
 export const selectArticleByTitle = (selected, articles) => ({
