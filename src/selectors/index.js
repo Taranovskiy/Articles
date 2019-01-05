@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
+import { mapToArr } from '../helpers';
 
-const articlesGetter = state => Object.values(state.articles);
+const articlesGetter = state => mapToArr(state.articles);
 const filtersGetter = state => state.filters;
 const idGetter = (state, props) => props.id;
 const commentsGetter = state => state.comments;

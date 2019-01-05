@@ -9,7 +9,7 @@ import './style.css';
 class Article extends PureComponent {
     static propTypes = {
         article: PropTypes.shape({
-            date: PropTypes.string.isRequired,
+            date: PropTypes.string,
             id: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             text: PropTypes.string,
